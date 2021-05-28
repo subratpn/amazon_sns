@@ -91,4 +91,20 @@ public class SNSSubscriptionRequest {
     public void setMessageId(String messageId) {
         this.messageId = messageId;
     }
+
+    @Override
+    public String toString() {
+        return "SNSSubscriptionRequest{" +
+                "signatureVersion='" + signatureVersion + '\'' +
+                ", type='" + type + '\'' +
+                ", topicArn='" + topicArn + '\'' +
+                ", message='" + message + '\'' +
+                ", unsubscribeURL='" + unsubscribeURL + '\'' +
+                ", signature='" + signature + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", signingCertURL='" + signingCertURL + '\'' +
+                ", subject='" + subject + '\'' +
+                ", messageId='" + messageId + '\'' +
+                '}';
+    }
 }
