@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SNSController {
 
     @RequestMapping(path = "/notification", method = {RequestMethod.GET, RequestMethod.POST}
-            , consumes = MediaType.TEXT_HTML_VALUE)
+            , consumes = MediaType.TEXT_PLAIN_VALUE)
     public String index(@RequestBody(required = false) SNSSubscriptionRequest snsSubscriptionRequest) {
         System.out.println("SNS Subscription Request  : " + snsSubscriptionRequest);
         return "index";
