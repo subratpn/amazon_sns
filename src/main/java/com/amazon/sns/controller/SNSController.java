@@ -8,17 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 @Controller
 public class SNSController {
 
     static ObjectMapper objectMapper = new ObjectMapper();
 
     @RequestMapping(path = "/notification", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView index(@RequestBody(required = false) String snsSubscriptionRequestString, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+    public ModelAndView index(@RequestBody(required = false) String snsSubscriptionRequestString) {
         System.out.println("SNS Subscription Request String : " + snsSubscriptionRequestString);
         ModelAndView modelAndView = new ModelAndView("index");
         if (snsSubscriptionRequestString != null) {
@@ -27,7 +23,7 @@ public class SNSController {
             final String subscribeURL = jsonObject.optString("SubscribeURL");
             System.out.println(subscribeURL);
             System.out.println("Redirecting....");
-            httpServletResponse.sendRedirect(subscribeURL);
+            modelAndView = new ModelAndView("redirect:/subscription");
             System.out.println("Redirection Complete");
             modelAndView.addObject("subscribeURL", subscribeURL);
         }
