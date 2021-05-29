@@ -23,15 +23,13 @@ public class SNSController {
             JSONObject jsonObject = new JSONObject(snsSubscriptionRequestString);
             final String subscribeURL = jsonObject.optString("SubscribeURL");
             System.out.println(subscribeURL);
-            System.out.println("Redirecting....");
-            modelAndView = new ModelAndView("redirect:" + subscribeURL);
-            System.out.println("Redirection Complete");
-            //modelAndView.addObject("subscribeURL", subscribeURL);
+            modelAndView = new ModelAndView("redirect:/subscribe");
+            modelAndView.addObject("subscribeURL", subscribeURL);
         }
         return modelAndView;
     }
 
-    @RequestMapping(path = "/subscription", method = RequestMethod.GET)
+    @RequestMapping(path = "/subscribe", method = RequestMethod.GET)
     public String subscription(@RequestParam String subscribeURL) {
         System.out.println("Inside Subscribe  :" + subscribeURL);
         return "subscription";
