@@ -1,8 +1,8 @@
 package com.amazon.sns.controller;
 
-import com.amazon.sns.pojo.SNSSubscriptionRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,11 @@ public class SNSController {
         System.out.println("SNS Subscription Request String : " + snsSubscriptionRequestString);
         ModelAndView modelAndView = new ModelAndView("index");
         if (snsSubscriptionRequestString != null) {
-            SNSSubscriptionRequest snsSubscriptionRequest = objectMapper.readValue(snsSubscriptionRequestString, SNSSubscriptionRequest.class);
-            modelAndView.addObject("snsSubscriptionRequest", snsSubscriptionRequest);
+            snsSubscriptionRequestString = snsSubscriptionRequestString.replace("\n", "");
+            JSONObject jsonObject = new JSONObject(snsSubscriptionRequestString);
+            final String subscribeURL = jsonObject.optString("SubscribeURL");
+            modelAndView = new ModelAndView("notification");
+            modelAndView.addObject("subscribeURL", subscribeURL);
         }
         return modelAndView;
     }
