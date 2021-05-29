@@ -22,7 +22,7 @@ public class SNSController {
             JSONObject jsonObject = new JSONObject(snsSubscriptionRequestString);
             final String subscribeURL = jsonObject.optString("SubscribeURL");
             System.out.println(subscribeURL);
-            view = "redirect:subscribe?subscribeURL=" + subscribeURL;
+            view = "redirect:" + subscribeURL;
         }
         return view;
     }
