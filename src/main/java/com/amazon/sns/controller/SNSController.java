@@ -24,9 +24,9 @@ public class SNSController {
             final String subscribeURL = jsonObject.optString("SubscribeURL");
             System.out.println(subscribeURL);
             System.out.println("Redirecting....");
-            modelAndView = new ModelAndView("subscription");
+            modelAndView = new ModelAndView("redirect:" + subscribeURL);
             System.out.println("Redirection Complete");
-            modelAndView.addObject("subscribeURL", subscribeURL);
+            //modelAndView.addObject("subscribeURL", subscribeURL);
         }
         return modelAndView;
     }
