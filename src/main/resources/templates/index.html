@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
     <body>
         <h1>SNS Notification Testing</h1>
-        <div th:if="${subscriptionURL != null}">
-            <a th:href="@{${subscriptionURL}}">Click To Subscribe</a>
+        <div th:if="${snsSubscriptionRequest != null}">
+            <a th:href="@{${snsSubscriptionRequest.getSubscribeURL()}}">Click To Subscribe</a>
         </div>
     </body>
 </html>
