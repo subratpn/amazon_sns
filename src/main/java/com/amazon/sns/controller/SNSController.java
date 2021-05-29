@@ -22,7 +22,7 @@ public class SNSController {
             snsSubscriptionRequestString = snsSubscriptionRequestString.replace("\n", "");
             JSONObject jsonObject = new JSONObject(snsSubscriptionRequestString);
             final String subscribeURL = jsonObject.optString("SubscribeURL");
-            modelAndView = new ModelAndView("forward:notification");
+            modelAndView = new ModelAndView("notification");
             modelAndView.addObject("subscribeURL", subscribeURL);
         }
         return modelAndView;
